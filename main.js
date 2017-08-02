@@ -12,6 +12,8 @@ function createBio(datum) {  //receives ONE object, which will be customers.resu
 
   let block ="";
 
+//<embarrasment src="I'm pretty embarrassed about this next part. I didn't realize that back-ticks parsed white space nicely. I'd re-do it if this were a weekly assignment but as it is it works so I'm happy.">
+
   block += "<li>";
   block += `\n<img src="${photoURL}">`
   block += `\n<h2 class="name">${name}</h2>`;
@@ -25,36 +27,21 @@ function createBio(datum) {  //receives ONE object, which will be customers.resu
   block += `\n<div class="ssn-wrapper"><h5 class = "ssn">${social}</h5></div>`
   block += "\n </li>"
 
+// </embarrasment>
+
   return(block);
 }
 
-// console.log(createBio(customers.results[0]));
 let theList = document.getElementById('the-list');
-console.log(theList);
 
 function processData(data){  //receives the "customers" object
 
   let people = data.results;
 
-  people.forEach( function(person){
-    // console.log(theList);
-    // console.log(person);
-    // console.log(createBio(person));
+  people.forEach( function(person){  //goes through each person object and pipes it to the createBio function
     theList.innerHTML += createBio(person);
-
   });
 
 }
 
-processData(customers);
-
-
-
-// NAME (name) = datum.name.first  +   datum.name.last
-// EMAIL (email) = datum.email
-// ADDRESS (street / City, State / Phone)
-//   datum.location.street
-//   datum.location.city + datum.location.state + datum.location.postcode
-//   datum.phone
-// SSN (ssn) [*blurry*]
-//   datum.id.value
+processData(customers); //runs the program on our data file
