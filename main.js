@@ -8,12 +8,12 @@ function createBio(datum) {  //receives ONE object, which will be customers.resu
   let zip     = datum.location.postcode;
   let phone   = datum.phone;
   let social  = datum.id.value;
-  let photoURL= datum.picture.medium;
+  let photoURL= datum.picture.large;
 
   let block ="";
 
   block += "<li>";
-  block += `\n<img src="${photoURL}>"`
+  block += `\n<img src="${photoURL}">`
   block += `\n<h2>${name}</h2>`;
   block += `\n<h3 class ="email">${email}</h3>`
   block += '\n<div class="address">'
@@ -27,9 +27,26 @@ function createBio(datum) {  //receives ONE object, which will be customers.resu
   return(block);
 }
 
-console.log(createBio(customers.results[0]));
+// console.log(createBio(customers.results[0]));
+let theList = document.getElementById('the-list');
 
 
+function processData(data){  //receives the "customers" object
+
+  let people = data.results;
+
+  people.forEach( function(person){
+
+    console.log(person);
+    console.log(createBio(person));
+
+    theList.innerHTML += createBio(person);
+
+  });
+
+}
+
+processData(customers);
 
 
 
